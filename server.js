@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require("cors");
 const mongoose = require('mongoose');
 const expressLayouts = require('express-ejs-layouts');
 const cookieParser = require('cookie-parser');
@@ -8,18 +9,16 @@ const bookRoutes = require('./routes/bookRoutes');
 const indexRoutes = require('./routes/indexRoutes');
 require('dotenv').config();
 const PORT = process.env.PORT || 3000;
-const cors = require("cors");
 
 
 
+const app = express();
+app.use(cookieParser());
+app.set('views', __dirname + '/views');
 app.use(cors({
     origin: "https://projectweb-yfxw.onrender.com/",
     credentials: true,
 }));
-const app = express();
-app.use(cookieParser());
-app.set('views', __dirname + '/views');
-
 app.set('view engine', 'ejs');
 app.use(expressLayouts); // 📌 Подключаем layout
 app.set('layout', 'layout'); // 📌 Указываем, что layout.ejs — основной шаблон
