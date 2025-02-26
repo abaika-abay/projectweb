@@ -28,7 +28,15 @@ app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 app.use('/book', bookRoutes);
 app.use('/books', bookRoutes);
-mongoose.connect('mongodb://127.0.0.1:27017/bookstore', { useNewUrlParser: true, useUnifiedTopology: true });
+const DB_URL = process.env.DB_URL;
+if (!DB_URL) {
+    console.error("Ошибка: переменная MONGO_URI не определена!");
+    process.exit(1); // Завершает процесс с ошибкой
+}
 
+mongoose.connect(DB_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
 app.listen(3000, () => console.log('Server running on port 3000'));
 
