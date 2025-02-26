@@ -1,0 +1,14 @@
+<% if (user) { %>
+    <div class="card mx-auto w-50">
+        <div class="card-body">
+            <h5 class="card-title">Welcome, <%= user.username %></h5>
+            <p>Email: <%= user.email %></p>
+            <p>Now you can view all books</p>
+            <a href="/books/" class="btn btn-primary">To Books</a>
+            <a href="/auth/logout" class="btn btn-danger">Logout</a>
+        </div>
+    </div>
+
+<% } else { %>
+    <p>Error: User not found</p>
+<% } %>
