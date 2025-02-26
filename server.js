@@ -8,9 +8,14 @@ const bookRoutes = require('./routes/bookRoutes');
 const indexRoutes = require('./routes/indexRoutes');
 require('dotenv').config();
 const PORT = process.env.PORT || 3000;
+const cors = require("cors");
 
 
 
+app.use(cors({
+    origin: "https://projectweb-yfxw.onrender.com/",
+    credentials: true,
+}));
 const app = express();
 app.use(cookieParser());
 app.set('views', __dirname + '/views');
